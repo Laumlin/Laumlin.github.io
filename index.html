@@ -177,6 +177,184 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js函数去重" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/24/js函数去重/">js函数去重</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/24/js函数去重/" class="archive-article-date">
+  	<time datetime="2017-11-24T08:50:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>方法1：利用<code>indexof</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">3</span>];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">arr</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">   <span class="keyword">var</span> res = [];</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;a.length; i++)&#123;</div><div class="line">    <span class="keyword">if</span>(res.indexOf(a[i]) == <span class="number">-1</span>)&#123;</div><div class="line">      res.push(a[i]);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>优化后：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.arr = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> res = [];</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="keyword">this</span>.length; i++)&#123;</div><div class="line">    <span class="keyword">if</span>(res.indexOf(<span class="keyword">this</span>[i]) == <span class="number">-1</span>)&#123;</div><div class="line">      res.push(<span class="keyword">this</span>[i]);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>方法2：</p>
+<p>1.创建一个新的数组存放结果</p>
+<p>2.创建一个空对象</p>
+<p>3.for循环时，每次取出一个元素与对象进行对比，如果这个元素不重复，则把它存放到结果数组中，同时把这个元素的内容作为对象的一个属性，并赋值为1，存入到第2步建立的对象中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> res = [];</div><div class="line">  <span class="keyword">var</span> j = &#123;&#125;;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="keyword">this</span>.length; i++)&#123;</div><div class="line">    <span class="keyword">if</span>(!j[<span class="keyword">this</span>[i]])&#123;</div><div class="line">      res.push(<span class="keyword">this</span>[i]);</div><div class="line">      j[i] = <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">去重</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/24/js函数去重/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Element与Node区别、children与childNodes区别-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/23/Element与Node区别、children与childNodes区别-1/">Element与Node区别、children与childNodes区别</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/23/Element与Node区别、children与childNodes区别-1/" class="archive-article-date">
+  	<time datetime="2017-11-23T14:59:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JavaScript中Element与Node的区别，children与childNodes的区别"><a href="#JavaScript中Element与Node的区别，children与childNodes的区别" class="headerlink" title="JavaScript中Element与Node的区别，children与childNodes的区别"></a>JavaScript中Element与Node的区别，children与childNodes的区别</h2><p>Element继承了Node类，也就是Element是Node多种类型中的一种。</p>
+<p>document.getElementById(‘xx’)取得的是Node还是Element呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Demo&lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;div id=<span class="string">"test"</span>&gt;</div><div class="line">		&lt;p&gt;One&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">		&lt;p&gt;Two&lt;/</span>p&gt;</div><div class="line">	&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>body&gt;</div><div class="line">&lt;<span class="regexp">/html&gt;</span></div><div class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></div><div class="line"><span class="string">	var div = document.getElementById("</span>test<span class="string">"); //true</span></div><div class="line"><span class="string">	console.log(div instanceof Element); //true</span></div><div class="line"><span class="string">	console.log(div instanceof Node);</span></div><div class="line"><span class="string">&lt;/script&gt;</span></div></pre></td></tr></table></figure>
+<p>可以看出document.getElementById(‘xx’)获取的即是Node也是Element。</p>
+<hr>
+<p>children是Element的属性，childNodes是Node的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Demo&lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;div id=<span class="string">"test"</span>&gt;</div><div class="line">		&lt;p&gt;One&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">		&lt;p&gt;Two&lt;/</span>p&gt;</div><div class="line">	&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">    &lt;p&gt;Three&lt;/</span>p&gt;</div><div class="line">&lt;<span class="regexp">/body&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>html&gt;</div><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">	<span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</div><div class="line">	<span class="built_in">console</span>.log(div.children[<span class="number">0</span>] <span class="keyword">instanceof</span> Element); <span class="comment">//true</span></div><div class="line">	<span class="built_in">console</span>.log(div.children[<span class="number">0</span>] <span class="keyword">instanceof</span> Node); <span class="comment">//true</span></div><div class="line"></div><div class="line">	<span class="built_in">console</span>.log(div.childNodes[<span class="number">0</span>] <span class="keyword">instanceof</span> Element); <span class="comment">//false</span></div><div class="line">	<span class="built_in">console</span>.log(div.childNodes[<span class="number">0</span>] <span class="keyword">instanceof</span> Node); <span class="comment">//true</span></div><div class="line"></div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">typeof</span> div.childNodes[<span class="number">0</span>].children); <span class="comment">//undefined</span></div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">typeof</span> div.childNodes[<span class="number">0</span>].childNodes); <span class="comment">//object</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>Element.childern返回[object HTMLCollection]数组，上面例子的</p>
+<p><code>body.childern = [object HTMLCollection];//[&#39;div&#39;,&#39;p&#39;,&#39;script&#39;]</code></p>
+<p>Element.childNodes返回[object NodeList]数组，</p>
+<p><code>body.childNodes = [object NodeList] //[&#39;#text&#39;,&#39;div&#39;,&#39;#text&#39;,&#39;script&#39;,&#39;#text&#39;]</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Element</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">children</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">childNodes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/23/Element与Node区别、children与childNodes区别-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Js学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -591,7 +769,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Laumlin
+    		&copy; 2018 Laumlin
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -703,6 +881,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Element</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">children</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">childNodes</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mongoose</a>
               </li>
              
@@ -712,6 +902,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">去重</a>
               </li>
             
             <div class="clearfix"></div>
