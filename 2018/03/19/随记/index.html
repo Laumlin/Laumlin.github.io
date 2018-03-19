@@ -17,7 +17,7 @@
 <meta property="og:description" content="随记js代码中可以直接修改元素的样式[^无论是样式表还是内联样式]，但是不能通过直接的方式获取在样式表内定义的样式 123456789101112131415&amp;lt;style&amp;gt;	div&amp;#123;      position: absolute;      width: 100px;      height: 100px;	&amp;#125;&amp;lt;/style&amp;gt;&amp;lt;html&amp;gt;&amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://owu8c85uh.bkt.clouddn.com/prototyp%20and%20__proto__.PNG">
-<meta property="og:updated_time" content="2018-03-19T14:41:46.700Z">
+<meta property="og:updated_time" content="2018-03-19T14:57:39.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;随记&#39;">
 <meta name="twitter:description" content="随记js代码中可以直接修改元素的样式[^无论是样式表还是内联样式]，但是不能通过直接的方式获取在样式表内定义的样式 123456789101112131415&amp;lt;style&amp;gt;	div&amp;#123;      position: absolute;      width: 100px;      height: 100px;	&amp;#125;&amp;lt;/style&amp;gt;&amp;lt;html&amp;gt;&amp;">
@@ -201,6 +201,7 @@
       
         <h2 id="随记"><a href="#随记" class="headerlink" title="随记"></a>随记</h2><p>js代码中可以直接修改元素的样式[^无论是样式表还是内联样式]，但是不能通过直接的方式获取在样式表内定义的样式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">	div&#123;</div><div class="line">      position: absolute;</div><div class="line">      width: <span class="number">100</span>px;</div><div class="line">      height: <span class="number">100</span>px;</div><div class="line">	&#125;</div><div class="line">&lt;<span class="regexp">/style&gt;</span></div><div class="line"><span class="regexp">&lt;html&gt;</span></div><div class="line"><span class="regexp">&lt;div&gt;&lt;/</span>div&gt;</div><div class="line">&lt;<span class="regexp">/html&gt;</span></div><div class="line"><span class="regexp">&lt;script&gt;</span></div><div class="line"><span class="regexp">	var div = document.getElementsByTagName('div')[0];</span></div><div class="line"><span class="regexp">		console.log(div.style.width) /</span><span class="regexp">/无结果</span></div><div class="line"><span class="regexp">	/</span><span class="regexp">/只能通过getComputedStyle()来获取，这个函数获取样式，不能修改样式</span></div><div class="line"><span class="regexp">	var width = window.getComputedStyle(div).width   /</span><span class="regexp">/100px</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
 <hr>
 <p><code>clientWidth = width + padding</code></p>
 <p><code>offsetWidth = width + padding +border</code></p>
@@ -498,19 +499,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">css盒模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">conten-box</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mongoose</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">exec()</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,7 +527,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">mongoose</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">exec()</a>
               </li>
             
             <div class="clearfix"></div>
