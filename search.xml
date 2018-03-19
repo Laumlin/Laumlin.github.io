@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA['随记']]></title>
+    <url>%2F2018%2F03%2F19%2F%E9%9A%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[随记js代码中可以直接修改元素的样式[^无论是样式表还是内联样式]，但是不能通过直接的方式获取在样式表内定义的样式 123456789101112131415&lt;style&gt; div&#123; position: absolute; width: 100px; height: 100px; &#125;&lt;/style&gt;&lt;html&gt;&lt;div&gt;&lt;/div&gt;&lt;/html&gt;&lt;script&gt; var div = document.getElementsByTagName('div')[0]; console.log(div.style.width) //无结果 //只能通过getComputedStyle()来获取，这个函数获取样式，不能修改样式 var width = window.getComputedStyle(div).width //100px clientWidth = width + padding offsetWidth = width + padding +border offsetLeft表示自身左侧到offsetParent(离自身最近的有定位position的父元素，若没有则为body)左侧的距离。 offsetLeft = left + margin-left 12345&lt;html&gt; &lt;div id='father'&gt; &lt;div id='son'&gt;&lt;/div&gt; &lt;/div&gt;&lt;/html&gt; offsetParent有定位, 本身也有定位 123456789101112131415&lt;style&gt; #father &#123; position: relative/absolute; padding: 20px; &#125; #son &#123; position: relative/absolute;/*定位*/ left: 100px; margin-left: 20px; &#125;&lt;style&gt;&lt;script&gt; console.log(son.offsetLeft) // 120 son.offsetLeft = 100 + 20&lt;/script&gt; offsetParent有定位，本身没有定位 12345678910111213141516&lt;style&gt; #father &#123; position: relative/absolute; padding: 20px; &#125; #son &#123; position: relative/absolute; left: 100px; margin-left: 20px; &#125;&lt;style&gt;&lt;script&gt; console.log(son.offsetLeft) // 40 son.offsetLeft = margin-left + father.padding-left = 20 + 20 &lt;/script&gt; ​ 关于prototyep和__proto__]]></content>
+      <tags>
+        <tag>prototyep和__proto__</tag>
+        <tag>offsetWidth</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[js函数去重]]></title>
     <url>%2F2017%2F11%2F24%2Fjs%E5%87%BD%E6%95%B0%E5%8E%BB%E9%87%8D%2F</url>
     <content type="text"><![CDATA[方法1：利用indexof 12345678910var a = [1,3,4,5,3,3];function arr(a)&#123; var res = []; for(var i=0; i&lt;a.length; i++)&#123; if(res.indexOf(a[i]) == -1)&#123; res.push(a[i]); &#125; &#125; return res;&#125; 优化后： 123456789Array.prototype.arr = function()&#123; var res = []; for(var i=0; i&lt;this.length; i++)&#123; if(res.indexOf(this[i]) == -1)&#123; res.push(this[i]); &#125; &#125; return res;&#125; 方法2： 1.创建一个新的数组存放结果 2.创建一个空对象 3.for循环时，每次取出一个元素与对象进行对比，如果这个元素不重复，则把它存放到结果数组中，同时把这个元素的内容作为对象的一个属性，并赋值为1，存入到第2步建立的对象中。 1234567891011Array.prototype.unique = function()&#123; var res = []; var j = &#123;&#125;; for(var i=0; i&lt;this.length; i++)&#123; if(!j[this[i]])&#123; res.push(this[i]); j[i] = 1; &#125; &#125; return res;&#125;]]></content>
